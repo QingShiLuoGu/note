@@ -107,3 +107,37 @@ public boolean dispatchTouchEvent(MotionEvent event) {
 3. 重写　onMessure()
 4. 重写  onLayout()
 5. 重写　onDraw()
+
+#AsynTask<>
+3个主要方法：
++ doInBackgroud(A... a)
++ onProgressUpdate(B... b)
++ onPostExcecute(C c)
+３个重要参数：
+
+```java
+ private class DownloadFilesTask extends AsyncTask<A, B, C>
+ ```
+
+只有doInBackgroud()方法不是在主线程中执行，其他的都是主线程中执行的
+方法执行的顺序是：
+
++ onPreExecute()
++ doInBackgroud()
++ onProgressUpdate()
++ onPostExcecute()
+
+如何执行：
+ new DownloadFilesTask().execute(a,a,a);
+如何取消：
+cancel();
+
+#　Handler 解释原理
+＋　handler可以用于消息的传递，一般是用来向主线程发送message，调用消息发送的方法后,message对象会被放到一个messageQueue
+当中，而这个MessageQueue是被一个Looper掌管的，Looper就是用来循环的取出消息然后发送出去的，消息被发送到handleMessage()方法,
+Looper可以通过每个Thread的方法来获取到
+＋　handler还可以用来发送Runnable对象，这个对象会被放到一个RuanbleQueue中，然后被一个一个取出，在与handler绑定的线程中执行
+
+ 
+
+
