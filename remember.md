@@ -100,3 +100,10 @@ public boolean dispatchTouchEvent(MotionEvent event) {
     return onTouchEvent(event);  
 }  
 ```
+
+#重写View
+1. 自定义属性
+2. 在View的构造方法中获取属性
+3. 重写　onMessure()
+4. 重写  onLayout()
+5. 重写　onDraw()
