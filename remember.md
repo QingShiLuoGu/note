@@ -113,11 +113,12 @@ public boolean dispatchTouchEvent(MotionEvent event) {
 + doInBackgroud(A... a)
 + onProgressUpdate(B... b)
 + onPostExcecute(C c)
+
 ３个重要参数：
 
 ```java
  private class DownloadFilesTask extends AsyncTask<A, B, C>
- ```
+```
 
 只有doInBackgroud()方法不是在主线程中执行，其他的都是主线程中执行的
 方法执行的顺序是：
@@ -128,16 +129,44 @@ public boolean dispatchTouchEvent(MotionEvent event) {
 + onPostExcecute()
 
 如何执行：
+
+```java
  new DownloadFilesTask().execute(a,a,a);
+```
+
 如何取消：
 cancel();
 
-#　Handler 解释原理
-＋　handler可以用于消息的传递，一般是用来向主线程发送message，调用消息发送的方法后,message对象会被放到一个messageQueue
+# Handler 解释原理
++ handler可以用于消息的传递，一般是用来向主线程发送message，调用消息发送的方法后,message对象会被放到一个messageQueue
 当中，而这个MessageQueue是被一个Looper掌管的，Looper就是用来循环的取出消息然后发送出去的，消息被发送到handleMessage()方法,
 Looper可以通过每个Thread的方法来获取到
-＋　handler还可以用来发送Runnable对象，这个对象会被放到一个RuanbleQueue中，然后被一个一个取出，在与handler绑定的线程中执行
 
- 
++ handler还可以用来发送Runnable对象，这个对象会被放到一个RuanbleQueue中，然后被一个一个取出，在与handler绑定的线程中执行
 
+# 深拷贝　浅拷贝
++ 关键在于对引用类型的拷贝是深还是欠
++ 两个指针是否指向同一块内存区域
 
+#Class 对象
++ 是什么
++ 有什么作用
++ 怎样得到　类.class　实例.getClass Class.getName("类名");
+
+# java之yield(),sleep(),wait()区别
+[java之yield(),sleep(),wait()区别](http://dylanxu.iteye.com/blog/1322066)
+
+# 生产者　消费者　代码
+
+# 死锁
+什么是死锁：简单来说，死锁是由多个进程循环等待它方占有的资源而造成的而无限期僵持下去的局面
+产生产生的四个条件：1.不剥夺条件　2.保持和请求条件　3.互斥条件　4.环路等待条件
+如何预防：不让四个条件中的一个或多个条件成立
+如何解除：解除或者挂起一些进程
+
+#进程间通信的方式　七种
+信号　信号量　管道　有名管道　消息队列　共享内存　套接字
+在android中对应着四大组件,Activity,Service,ContentProvider,Broadcast
+
+＃线程间通信
+android: Handler 全局变量　回调 BroadCast
