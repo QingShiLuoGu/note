@@ -164,9 +164,52 @@ Looper可以通过每个Thread的方法来获取到
 如何预防：不让四个条件中的一个或多个条件成立
 如何解除：解除或者挂起一些进程
 
-#进程间通信的方式　七种
+#　进程间通信的方式　七种
 信号　信号量　管道　有名管道　消息队列　共享内存　套接字
 在android中对应着四大组件,Activity,Service,ContentProvider,Broadcast
 
-＃线程间通信
+#　线程间通信
 android: Handler 全局变量　回调 BroadCast
+
+# 多态
++ 面向对象的三大特性：封装、继承、多态
++ 什么是多态：同一个方法调用可以根据发送对象的不同二采取不同的行为方式
++ 实现多态的技术：动态绑定　是指在运行期间根据对象的类型调用相应的方法
++ 多态存在的三大必要条件：要有继承、要有重写、父类引用指向子类
+
+# 垃圾回收
+## 如何判断应该回收的对象
+＋　引用计数法　　当引用数为０的时候就可以回收了　缺陷：循环引用　　如多个类的引用构成一个圈
+＋　对象引用遍历　　不能被遍历到的对象可以回收
+
+## 垃圾回收机制
+＋　复制回收
+＋　标记回收
+
+#　fail-fast
+一种错误检测机制，一般是在集合的迭代过程中发现集合的结构被修改就会抛出ConcurrentModificationException。这个修改可能是在
+单线程中，也可能是在多线程中
+
+# ArrayList HashMap的线程安全推荐类
+CopyOnWriteArrayList   ConcurrentHashMap
+
+# 反射机制
+概念：在运行过程中，对于任何一个类都能知道它所有的属性和方法，对于任何一个对象都能够调用它的任何一个方法和属性。
+这种在运行时动态获取类信息和动态调用方法的机制被称为反射机制。
+应用场景：连接数据库时加载驱动　执行网络传输的字节码文件
+
+＃　java 线程池技术
+好处：1.可以减少线程的创建、回收的开销　２．提供对线程的多种控制，比如并发数目的控制，定时定期执行等等功能
+java.util.concurrrent.Executors类提供四种线程池：
++ newCachedThreadPool
++ newFixedThreadPool
++ newScheduledThreadPool
++ new singleThreadExecutor
+#不通过构造函数创建对象
+＋　使用clone()方法
+＋　使用反序列化
+
+# finally 里面return
+
+在try语句快当中执行了return语句，但是不会马上返回，需要执行完finally语句快再返回。如果finally语句里面也有return语句，
+那么finallly里面的return 会覆盖try当中的return。
